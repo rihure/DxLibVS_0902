@@ -1,11 +1,11 @@
 #include "DxLib.h"
 
-#define GAME_WIDTH 800 //画面横の大きさ
-#define GAME_HEIGHT 600 //画面縦の大きさ
+#define GAME_WIDTH 960 //画面横の大きさ
+#define GAME_HEIGHT 640 //画面縦の大きさ
 #define GAME_COLOR 32 //画面のカラービット
 
 #define GAME_WINDOW_BAR 0 //タイトルバーはデフォルト
-#define GAME_WINDOW_NAME "GAME_TITLE" 
+#define GAME_WINDOW_NAME "DxLib_Movie" 
 
 #define MOVIE_PATH ".\\Movie\\Fireworks.mp4"
 
@@ -34,7 +34,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			SeekMovieToGraph(handle, 0); //再生バーを最初からにする
 			PlayMovieToGraph(handle); //動画を再生状態にする
 
-			ChangeMovieVolumeToGraph(127,handle)//動画の音を調整する
+			ChangeMovieVolumeToGraph(127, handle);//動画の音を調整する
 		}
 		DrawExtendGraph(0, 0, GAME_WIDTH, GAME_HEIGHT, handle, FALSE);
 
