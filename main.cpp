@@ -1,46 +1,47 @@
 #include "DxLib.h"
 
-#define GAME_WIDTH 960 //‰æ–Ê‰¡‚Ì‘å‚«‚³
-#define GAME_HEIGHT 640 //‰æ–Êc‚Ì‘å‚«‚³
-#define GAME_COLOR 32 //‰æ–Ê‚ÌƒJƒ‰[ƒrƒbƒg
+#define GAME_WIDTH 960 //ç”»é¢æ¨ªã®å¤§ãã•
+#define GAME_HEIGHT 640 //ç”»é¢ç¸¦ã®å¤§ãã•
+#define GAME_COLOR 32 //ç”»é¢ã®ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆ
 
-#define GAME_WINDOW_BAR 0 //ƒ^ƒCƒgƒ‹ƒo[‚ÍƒfƒtƒHƒ‹ƒg
+#define GAME_WINDOW_BAR 0 //ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
 #define GAME_WINDOW_NAME "DxLib_Movie" 
 
 #define MOVIE_PATH ".\\Movie\\Fireworks.mp4"
 
-int handle = -1; //“®‰æ‚Ìƒnƒ“ƒhƒ‹
+int handle = -1; //å‹•ç”»ã®ãƒãƒ³ãƒ‰ãƒ«
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	SetOutApplicationLogValidFlag(FALSE); //log.txt‚ğo—Í‚µ‚È‚¢
-	ChangeWindowMode(TRUE); //ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚Éİ’è
-	SetGraphMode(GAME_WIDTH, GAME_HEIGHT, GAME_COLOR); //w’è‚Ì”’l‚ÅƒEƒBƒ“ƒhƒE‚ğ•\¦‚·‚é
-	SetWindowStyleMode(GAME_WINDOW_BAR); //ƒ^ƒCƒgƒ‹ƒo[‚ÍƒfƒtƒHƒ‹ƒg‚É‚·‚é
-	SetMainWindowText(TEXT(GAME_WINDOW_NAME)); //ƒEƒBƒ“ƒhƒE‚Ìƒ^ƒCƒgƒ‹‚Ì•¶š
-	SetAlwaysRunFlag(TRUE); //”ñƒAƒNƒeƒBƒu‚Å‚àÀs‚·‚é
+	SetOutApplicationLogValidFlag(FALSE); //log.txtã‚’å‡ºåŠ›ã—ãªã„
+	ChangeWindowMode(TRUE); //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã«è¨­å®š
+	SetGraphMode(GAME_WIDTH, GAME_HEIGHT, GAME_COLOR); //æŒ‡å®šã®æ•°å€¤ã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã™ã‚‹
+	SetWindowStyleMode(GAME_WINDOW_BAR); //ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«ã™ã‚‹
+	SetMainWindowText(TEXT(GAME_WINDOW_NAME)); //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¿ã‚¤ãƒˆãƒ«ã®æ–‡å­—
+	SetAlwaysRunFlag(TRUE); //éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ã‚‚å®Ÿè¡Œã™ã‚‹
 
-	if (DxLib_Init() == -1) { return -1; } //DxLib‚Ì‰Šú‰»ˆ—
+	if (DxLib_Init() == -1) { return -1; } //DxLibã®åˆæœŸåŒ–å‡¦ç†
 
 	handle = LoadGraph(MOVIE_PATH);
 
 	while (TRUE)
 	{
-		if (ProcessMessage() != 0) { break; } //ƒƒbƒZ[ƒWˆ—‚ÌŒ‹‰Ê‚ªƒGƒ‰[•\¦‚ÌA‹­§I—¹
-		if (ClearDrawScreen() != 0) { break; } //‰æ–Ê‚ğÁ‹‚Å‚«‚È‚©‚Á‚½A‹­§I—¹
+		if (ProcessMessage() != 0) { break; } //ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã®çµæœãŒã‚¨ãƒ©ãƒ¼è¡¨ç¤ºã®æ™‚ã€å¼·åˆ¶çµ‚äº†
+		if (ClearDrawScreen() != 0) { break; } //ç”»é¢ã‚’æ¶ˆå»ã§ããªã‹ã£ãŸæ™‚ã€å¼·åˆ¶çµ‚äº†
 
 		if (GetMovieStateToGraph(handle) == 0)
 		{
-			SeekMovieToGraph(handle, 0); //Ä¶ƒo[‚ğÅ‰‚©‚ç‚É‚·‚é
-			PlayMovieToGraph(handle); //“®‰æ‚ğÄ¶ó‘Ô‚É‚·‚é
+			SeekMovieToGraph(handle, 0); //å†ç”Ÿãƒãƒ¼ã‚’æœ€åˆã‹ã‚‰ã«ã™ã‚‹
+			PlayMovieToGraph(handle); //å‹•ç”»ã‚’å†ç”ŸçŠ¶æ…‹ã«ã™ã‚‹
 
-			ChangeMovieVolumeToGraph(127, handle);//“®‰æ‚Ì‰¹‚ğ’²®‚·‚é
+			ChangeMovieVolumeToGraph(127, handle);//å‹•ç”»ã®éŸ³ã‚’èª¿æ•´ã™ã‚‹
 		}
 		DrawExtendGraph(0, 0, GAME_WIDTH, GAME_HEIGHT, handle, FALSE);
 
-		DrawString(0, 0, "“®‰æ‚ğÄ¶‚µ‚Ä‚¢‚Ü‚·EEE", GetColor(255, 255, 255));
+		DrawString(0, 0, "å‹•ç”»ã‚’å†ç”Ÿã—ã¦ã„ã¾ã™ãƒ»ãƒ»ãƒ»", GetColor(255, 255, 255));
+		DrawString(0,20,"FireWorks",GetColor(255,255,255));
 
-		ScreenFlip(); //ƒ‚ƒjƒ^‚ÌƒŠƒtƒŒƒbƒVƒ…ƒŒ[ƒg‚Ì‚Í‚â‚³‚Å— ‰æ–Ê‚ğÄ•`‰æ
+		ScreenFlip(); //ãƒ¢ãƒ‹ã‚¿ã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆã®ã¯ã‚„ã•ã§è£ç”»é¢ã‚’å†æç”»
 	}
 
 	DxLib_End();
